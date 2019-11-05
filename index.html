@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+	<head>
+		<title>Codevember 2019</title>
+		<link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="styles/pebble.css">
+	</head>
+	<body>
+		<div class="pebble">
+			<div class="pebble__strap pebble__strap--top"></div>
+			<div class="pebble__button pebble__button--left"></div>
+			<div class="pebble__glass">
+				<div class="pebble__display">
+					<div class="pebble__time js-time"></div>
+					<div class="pebble__biometric js-heart-rate"><span>❤️</span> 63 BPM</div>
+					<div class="pebble__biometric js-step-count"><span>👟</span> 8,742</div>
+				</div>
+			</div>
+			<div class="pebble__button pebble__button--right"></div>
+			<div class="pebble__strap pebble__strap--bottom"></div>
+		</div>
+
+		<script>
+			var date = new Date();
+			var hour = date.getHours();
+			var minutes = date.getMinutes();
+					minutes = minutes <= 9 ? '0' + minutes : minutes;
+			var amPm = hour < 12 ? 'AM' : 'PM';
+			var time = `${hour}:${minutes}${amPm}`;
+			var timeSlot = document.querySelector('.js-time');
+			timeSlot.innerText = time;
+		</script>
+	</body>
+</html>
