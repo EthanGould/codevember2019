@@ -2,7 +2,8 @@
 $black: #242424; // casing and strap
 $gray-dark: #3e3e3e; // buttons
 $gray-light: #9d9d9d; // paint screen items
-$lightblue: #7e7894;
+$lightblue: #5b4c92;
+$whiteish: #f9f9f9;
 
 body {
 	margin: 0;
@@ -11,7 +12,7 @@ body {
 .pebble {
 	box-sizing: border-box;
 	position: relative;
-	height: 48vh;
+	height: 46vh;
 	width: 33vh;
 	padding: 8vh 2vh;
 	margin: 25vh auto;
@@ -36,18 +37,21 @@ body {
 		border-radius: 10px;
 		outline: solid $gray-light;
 		outline-offset: -15px;
+		color: $gray-light;
+		transition: color .3s, outline .3s, background .3s;
 
 		&--backlight {
 			background: $lightblue;
+			color: $whiteish;
+			outline: solid $whiteish;
 		}
 	}
 
 	&__time {
 		font-family: 'Press Start 2P', sans-serif;
-		padding: 60px 0 10px;
+		padding: 60px 0 20px;
     text-align: center;
-    font-size: 18px;
-    color: $gray-light;
+    font-size: 22px;
 
     span {
 
@@ -68,6 +72,7 @@ body {
 		position: absolute;
 		top: 10vh;
 		width: 1vh;
+		padding: 0;
 		border: 1px solid;
 		background-color: $gray-dark;
 		cursor: pointer;
@@ -85,10 +90,11 @@ body {
 			&::after {
 				content: "";
 				position: absolute;
-				width: 5vh;
+				width: .5vh;
 				height: .75vh;
-				border-radius: 50%;
 				background-color: white;
+				border-top-left-radius: 50%;
+				border-bottom-left-radius: 50%;
 			}
 
 			&::before{
@@ -125,9 +131,13 @@ body {
 
 	&__biometric {
 		font-family: 'Press Start 2P', sans-serif;
-		padding: 10px 0;
+		padding: 5px 0;
     font-size: 12px;
-    color: $gray-light;
+    display: flex;
+
+    span:first-child {
+    	flex-basis: 30px;
+    }
 	}
 }
 

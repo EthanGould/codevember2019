@@ -4,7 +4,7 @@ body {
 .pebble {
   box-sizing: border-box;
   position: relative;
-  height: 48vh;
+  height: 46vh;
   width: 33vh;
   padding: 8vh 2vh;
   margin: 25vh auto;
@@ -25,15 +25,18 @@ body {
     background-color: #171717;
     border-radius: 10px;
     outline: solid #9d9d9d;
-    outline-offset: -15px; }
+    outline-offset: -15px;
+    color: #9d9d9d;
+    transition: color .3s, outline .3s, background .3s; }
     .pebble__display--backlight {
-      background: #7e7894; }
+      background: #5b4c92;
+      color: #f9f9f9;
+      outline: solid #f9f9f9; }
   .pebble__time {
     font-family: 'Press Start 2P', sans-serif;
-    padding: 60px 0 10px;
+    padding: 60px 0 20px;
     text-align: center;
-    font-size: 18px;
-    color: #9d9d9d; }
+    font-size: 22px; }
     .pebble__time span:first-child {
       opacity: 0;
       animation: blink 1s;
@@ -45,6 +48,7 @@ body {
     position: absolute;
     top: 10vh;
     width: 1vh;
+    padding: 0;
     border: 1px solid;
     background-color: #3e3e3e;
     cursor: pointer; }
@@ -57,10 +61,11 @@ body {
       .pebble__button--right::before, .pebble__button--right::after {
         content: "";
         position: absolute;
-        width: 5vh;
+        width: .5vh;
         height: .75vh;
-        border-radius: 50%;
-        background-color: white; }
+        background-color: white;
+        border-top-left-radius: 50%;
+        border-bottom-left-radius: 50%; }
       .pebble__button--right::before {
         top: 33%; }
       .pebble__button--right::after {
@@ -83,9 +88,11 @@ body {
       background: linear-gradient(180deg, #050505, #343333 20%, #2e2d2d 35%); }
   .pebble__biometric {
     font-family: 'Press Start 2P', sans-serif;
-    padding: 10px 0;
+    padding: 5px 0;
     font-size: 12px;
-    color: #9d9d9d; }
+    display: flex; }
+    .pebble__biometric span:first-child {
+      flex-basis: 30px; }
 
 @keyframes blink {
   0% {

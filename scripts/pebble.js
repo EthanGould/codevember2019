@@ -60,6 +60,9 @@ pebble.updateStepCount = function() {
 
 pebble.backlight = function() {
 	pebble.display.classList.add('pebble__display--backlight');
+	setTimeout(function() {
+		pebble.display.classList.remove('pebble__display--backlight');
+	}, 3000);
 }
 
 
