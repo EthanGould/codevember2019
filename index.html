@@ -4,21 +4,89 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="styles/pebble.css">
+		<!-- The core Firebase JS SDK is always required and must be listed first -->
+		<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+		<!-- The core Firestore JS SDK -->
+		<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
 	</head>
-	<body>
+	<body class="body">
 		<div class="pebble">
-			<div class="pebble__strap pebble__strap--top"></div>
-			<div class="pebble__button pebble__button--left"></div>
+			<div class="pebble__strap pebble__strap--top js-right-button"></div>
+			<div class="pebble__button pebble__button--left js-left-button"></div>
 			<div class="pebble__glass">
 				<div class="pebble__display">
 					<div class="pebble__time js-time"></div>
 					<div class="pebble__biometric js-heart-rate"><span>❤️</span> 63 BPM</div>
-					<div class="pebble__biometric js-step-count"><span>👟</span> 8,742</div>
+					<div class="pebble__biometric js-step-count"><span>👟</span><span data-id="K4VA62cri8VVb8oawiXs" class="js-steps"></span></div>
 				</div>
 			</div>
 			<div class="pebble__button pebble__button--right"></div>
 			<div class="pebble__strap pebble__strap--bottom"></div>
 		</div>
+
+
+		<script>
+		  // Your web app's Firebase configuration
+		  var firebaseConfig = {
+		    apiKey: "AIzaSyCafBlZrT5xlsYupGIWrXtWavjA-5AXzPs",
+		    authDomain: "pebble-d630d.firebaseapp.com",
+		    databaseURL: "https://pebble-d630d.firebaseio.com",
+		    projectId: "pebble-d630d",
+		    storageBucket: "pebble-d630d.appspot.com",
+		    messagingSenderId: "746469969124",
+		    appId: "1:746469969124:web:a7beaf01547a414652b0f1",
+		    measurementId: "G-QYFYP4DRF3"
+		  };
+		  // Initialize Firebase
+		  firebase.initializeApp(firebaseConfig);
+
+
+		  // Initialize Cloud Firestore through Firebase
+			var db = firebase.firestore();
+
+			var displayCount = function() {
+				db.collection('biometrics').get().then((snapshot) => {
+					console.log(snapshot.docs[0].data());
+					var steps = snapshot.docs[0].data();
+					var stepCount = document.querySelector('.js-steps');
+					stepCount.innerHTML = steps.stepCount;
+				})
+			}
+
+
+			var updateStepCount = function() {
+				var count = Math.floor(document.querySelector('.js-steps').innerHTML) + 1;
+				console.log(count);
+				db.collection('biometrics').doc('K4VA62cri8VVb8oawiXs').set({
+					stepCount: count
+				}).then(() => {
+					displayCount();
+				})
+			}
+
+			var stepButton = document.querySelector('.body');
+
+			stepButton.addEventListener('click', function() {
+				console.log('boop');
+				updateStepCount();
+			});
+
+			displayCount();
+
+
+		 //    stepCount: "1",
+			// }).then(function(docRef) {
+			//     console.log("Document written with ID: ", docRef.id);
+			// }).catch(function(error) {
+			//     console.error("Error adding document: ", error);
+			// });
+
+			// db.collection("stepCount").get().then((querySnapshot) => {
+		 //    querySnapshot.forEach((doc) => {
+			// 		console.log(`${doc.id} => ${doc.data()}`);
+		 //    });
+			// });
+		</script>
 
 		<script>
 			function setTime() {
@@ -37,5 +105,7 @@
 			setTime();
 			setInterval(setTime, 60000);
 		</script>
+
+
 	</body>
 </html>
