@@ -7,16 +7,26 @@ body {
   height: 375px;
   width: 275px;
   padding: 65px 15px;
-  margin: 200px auto;
+  margin: 150px auto;
   background: linear-gradient(180deg, #242424, #484848 15%, #484848 85%, #242424 100%);
-  border-radius: 5px; }
+  border-radius: 5px;
+  transform: rotateY(-180deg);
+  animation-name: spinIn;
+  animation-duration: .5s;
+  animation-fill-mode: forwards; }
   .pebble__glass {
     box-sizing: border-box;
     height: 100%;
     width: 100%;
     padding: 25px;
     background-color: black;
-    border-radius: 30px; }
+    border-radius: 30px;
+    transform: translateX(-100%);
+    opacity: 0;
+    animation-name: slideIn;
+    animation-duration: 1s;
+    animation-delay: .5s;
+    animation-fill-mode: forwards; }
   .pebble__display {
     box-sizing: border-box;
     height: 100%;
@@ -52,17 +62,27 @@ body {
     padding: 0;
     border: 1px solid;
     background-color: #3e3e3e;
-    cursor: pointer; }
+    cursor: pointer;
+    opacity: 0;
+    z-index: -1; }
     .pebble__button--left {
-      left: -8px;
-      height: 75px; }
+      left: 0;
+      height: 75px;
+      animation-name: slideLeft;
+      animation-duration: .5s;
+      animation-delay: 1.5s;
+      animation-fill-mode: forwards; }
     .pebble__button--right {
-      right: -8px;
-      height: 220px; }
+      right: 0;
+      height: 220px;
+      animation-name: slideRight;
+      animation-duration: .5s;
+      animation-delay: 1.5s;
+      animation-fill-mode: forwards; }
       .pebble__button--right::before, .pebble__button--right::after {
         content: "";
         position: absolute;
-        width: 4px;
+        width: 5px;
         height: 6px;
         background-color: white;
         border-top-left-radius: 50%;
@@ -117,5 +137,24 @@ body {
     opacity: 1; }
   100% {
     opacity: 0; } }
+@keyframes slideLeft {
+  0% {
+    transform: translateX(0); }
+  100% {
+    opacity: 1;
+    transform: translateX(-100%); } }
+@keyframes slideRight {
+  0% {
+    transform: translateX(0); }
+  100% {
+    opacity: 1;
+    transform: translateX(100%); } }
+@keyframes slideIn {
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+@keyframes spinIn {
+  100% {
+    transform: rotateY(0deg); } }
 
 /*# sourceMappingURL=pebble.css.map */
