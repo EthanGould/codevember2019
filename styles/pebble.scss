@@ -18,10 +18,11 @@ body {
 	margin: 150px auto;
 	background: linear-gradient(180deg, $black, #484848 15%, #484848 85%, $black 100%);
 	border-radius: 5px;
-	transform: rotateY(-180deg);
-	animation-name: spinIn;
-	animation-duration: .5s;
+	// transform: rotateY(-180deg);
+	animation-name: fadeLock;
+	animation-duration: 2.5s;
 	animation-fill-mode: forwards;
+	opacity: 0;
 
 	&__glass {
 		box-sizing: border-box;
@@ -30,7 +31,7 @@ body {
 		padding: 25px;
 		background-color: black;
 		border-radius: 30px;
-		transform: translateX(-100%);
+		transform: translateY(-300%);
 		opacity: 0;
 
 		animation-name: slideIn;
@@ -50,6 +51,11 @@ body {
 		outline-offset: -15px;
 		color: $gray-light;
 		transition: color .3s, outline .3s, background .3s;
+		opacity: 0;
+		animation-name: powerUp;
+		animation-duration: .5s;
+		animation-delay: 2.5s;
+		animation-fill-mode: forwards;
 
 		&--backlight {
 			.pebble__shoe,
@@ -138,16 +144,23 @@ body {
 		border-radius: 15px;
 		box-shadow: inset 0 0 10px black;
 
+		animation-name: flyIn;
+		animation-duration: 1.5s;
+		animation-delay: 1s;
+		animation-fill-mode: forwards;
+
 		&--top {
 			top: -80px;
 			clip-path: polygon(3% 0%, 97% 0%, 100% 100%, 0% 100%);
 			background: linear-gradient(180deg, #2e2d2d 65%, #343333 80%, #050505);
+			transform: translateY(-200%) translateX(-200%) scale(0);
 		}
 
 		&--bottom {
 			bottom: -80px;
 			clip-path: polygon(0% 0%, 100% 0%, 97% 100%, 3% 100%);
 			background: linear-gradient(180deg, #050505, #343333 20%, #2e2d2d 35%);
+			transform: translateY(200%) translateX(200%) scale(0);
 		}
 	}
 
@@ -201,9 +214,34 @@ body {
 }
 
 @keyframes slideIn {
-	100% {opacity: 1; transform: translateX(0);}
+	80% { opacity: 1;}
+	100% {opacity: 1; transform: translateY(0);}
 }
 
-@keyframes spinIn {
-	100% {transform: rotateY(0deg);}
+@keyframes fadeLock {
+	50% {opacity: 1;}
+	89% {transform: rotateZ(0)}
+	90% {transform: rotateZ(-3deg);}
+	94% {transform: rotateZ(3deg) scale(1.03);}
+	98% {transform: rotateZ(-3deg);}
+	100% {transform: translateZ(0); opacity: 1;}
 }
+
+@keyframes powerUp {
+	100% {opacity: 1;}
+}
+
+@keyframes flyIn {
+	70% {transform: translateY(0) translateX(0) scale(1);}
+	100% {transform: translateY(0) translateX(0) scale(1);}
+}
+
+
+
+
+
+
+
+
+
+
