@@ -1,6 +1,11 @@
 body {
   margin: 0; }
 
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
 .pebble {
   box-sizing: border-box;
   position: relative;
@@ -12,8 +17,10 @@ body {
   border-radius: 5px;
   animation-name: fadeLock;
   animation-duration: 2.5s;
+  animation-delay: 1s;
   animation-fill-mode: forwards;
-  opacity: 0; }
+  opacity: 0;
+  z-index: 1; }
   .pebble__glass {
     box-sizing: border-box;
     height: 100%;
@@ -25,7 +32,7 @@ body {
     opacity: 0;
     animation-name: slideIn;
     animation-duration: 1s;
-    animation-delay: .5s;
+    animation-delay: 1.5s;
     animation-fill-mode: forwards; }
   .pebble__display {
     box-sizing: border-box;
@@ -41,7 +48,7 @@ body {
     opacity: 0;
     animation-name: powerUp;
     animation-duration: .5s;
-    animation-delay: 2.5s;
+    animation-delay: 3.5s;
     animation-fill-mode: forwards; }
     .pebble__display--backlight {
       background: #5b4c92;
@@ -75,14 +82,14 @@ body {
       height: 75px;
       animation-name: slideLeft;
       animation-duration: .5s;
-      animation-delay: 1.5s;
+      animation-delay: 2.5s;
       animation-fill-mode: forwards; }
     .pebble__button--right {
       right: 0;
       height: 220px;
       animation-name: slideRight;
       animation-duration: .5s;
-      animation-delay: 1.5s;
+      animation-delay: 2.5s;
       animation-fill-mode: forwards; }
       .pebble__button--right::before, .pebble__button--right::after {
         content: "";
@@ -139,6 +146,111 @@ body {
     .pebble__shoe ~ span {
       margin-left: 15px; }
 
+.circuit {
+  background: green;
+  position: absolute;
+  height: 325px;
+  width: 200px;
+  margin: 25px calc(50% - 100px);
+  transform: scale(0.5);
+  animation-name: scaleUp;
+  animation-duration: 1s;
+  animation-fill-mode: forwards; }
+  .circuit__chip {
+    height: 30px;
+    width: 50px;
+    position: absolute;
+    background: black;
+    border: dotted 2px grey;
+    z-index: 1;
+    box-shadow: 0 0 15px #4c4c4c; }
+    .circuit__chip--large {
+      height: 70px;
+      width: 70px;
+      bottom: 80px;
+      right: 50px; }
+      .circuit__chip--large::after {
+        content: "pebble";
+        font-size: 10px;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        color: #9d9d9d;
+        font-family: sans-serif; }
+    .circuit__chip--small {
+      top: 10px;
+      left: 10px; }
+  .circuit__transistors {
+    position: absolute;
+    bottom: 20px;
+    left: 20px; }
+  .circuit__transistor {
+    position: relative;
+    display: inline-block;
+    height: 25px;
+    width: 7px;
+    margin-right: 10px;
+    border-radius: 10px;
+    background: #9d9d9d;
+    z-index: 1;
+    border-bottom: 5px solid #6a6a6a;
+    box-shadow: 0 0 15px #4c4c4c; }
+    .circuit__transistor:nth-child(odd)::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      height: 3px;
+      background: darkorange; }
+    .circuit__transistor:nth-child(4)::before, .circuit__transistor:nth-child(4)::after {
+      content: "";
+      position: absolute;
+      width: 100%; }
+    .circuit__transistor:nth-child(4)::before {
+      top: 30%;
+      height: 2px;
+      background: white; }
+    .circuit__transistor:nth-child(4)::after {
+      top: 60%;
+      height: 3px;
+      background: red; }
+  .circuit__path {
+    border: 1px solid gold;
+    position: absolute; }
+    .circuit__path--chip {
+      width: 75px;
+      height: 183px;
+      right: 45%;
+      top: 20px;
+      outline: 1px solid gold;
+      outline-offset: 4px; }
+    .circuit__path--trans {
+      width: 115px;
+      height: 75px;
+      right: 60px;
+      bottom: 25px;
+      border-left: none;
+      border-top: none; }
+    .circuit__path--sensor {
+      width: 50px;
+      height: 140px;
+      right: 37px;
+      bottom: 100px;
+      border-left: none;
+      border-top: none; }
+  .circuit__sensors {
+    position: absolute;
+    right: 30px;
+    top: 40px;
+    z-index: 1; }
+  .circuit__sensor {
+    width: 10px;
+    height: 10px;
+    border: 3px solid #3e3e3e;
+    background: darkorange;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #4c4c4c; }
+
 @keyframes blink {
   0% {
     opacity: 0; }
@@ -183,6 +295,9 @@ body {
 @keyframes powerUp {
   100% {
     opacity: 1; } }
+@keyframes scaleUp {
+  100% {
+    transform: scale(1); } }
 @keyframes flyIn {
   70% {
     transform: translateY(0) translateX(0) scale(1); }

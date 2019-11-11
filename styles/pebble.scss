@@ -9,6 +9,12 @@ body {
 	margin: 0;
 }
 
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
 .pebble {
 	box-sizing: border-box;
 	position: relative;
@@ -18,11 +24,12 @@ body {
 	margin: 150px auto;
 	background: linear-gradient(180deg, $black, #484848 15%, #484848 85%, $black 100%);
 	border-radius: 5px;
-	// transform: rotateY(-180deg);
 	animation-name: fadeLock;
 	animation-duration: 2.5s;
+	animation-delay: 1s;
 	animation-fill-mode: forwards;
 	opacity: 0;
+	z-index: 1;
 
 	&__glass {
 		box-sizing: border-box;
@@ -36,7 +43,7 @@ body {
 
 		animation-name: slideIn;
 		animation-duration: 1s;
-		animation-delay: .5s;
+		animation-delay: 1.5s;
 		animation-fill-mode: forwards;
 	}
 
@@ -54,7 +61,7 @@ body {
 		opacity: 0;
 		animation-name: powerUp;
 		animation-duration: .5s;
-		animation-delay: 2.5s;
+		animation-delay: 3.5s;
 		animation-fill-mode: forwards;
 
 		&--backlight {
@@ -102,7 +109,7 @@ body {
 			height: 75px;
 			animation-name: slideLeft;
 			animation-duration: .5s;
-			animation-delay: 1.5s;
+			animation-delay: 2.5s;
 			animation-fill-mode: forwards;
 		}
 
@@ -111,7 +118,7 @@ body {
 			height: 220px;
 			animation-name: slideRight;
 			animation-duration: .5s;
-			animation-delay: 1.5s;
+			animation-delay: 2.5s;
 			animation-fill-mode: forwards;
 
 			&::before,			
@@ -195,6 +202,144 @@ body {
 	}
 }
 
+.circuit {
+  background: green;
+  position: absolute;
+  height: 325px;
+  width: 200px;
+ 	margin: 25px calc(50% - 100px);
+ 	transform: scale(.5);
+
+	animation-name: scaleUp;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+
+  &__chip {
+  	height: 30px;
+  	width: 50px;
+  	position: absolute;
+  	background: black;
+  	border: dotted 2px grey;
+  	z-index: 1;
+  	box-shadow: 0 0 15px #4c4c4c;
+
+  	&--large {
+	    height: 70px;
+	    width: 70px;
+	    bottom: 80px;
+	    right: 50px;
+	    &::after {
+  			content: "pebble";
+  			font-size: 10px;
+  			position: absolute;
+  			top: 10px;
+  			left: 10px;
+  			color: $gray-light;
+  			font-family: sans-serif;
+  		}
+  	}
+
+  	&--small {
+			top: 10px;
+  		left: 10px;
+  	}
+  }
+
+  &__transistors {
+  	position: absolute;
+  	bottom: 20px;
+  	left: 20px;
+	}
+
+  &__transistor {
+  	position: relative;
+  	display: inline-block;
+		height: 25px;
+		width: 7px;
+  	margin-right: 10px;
+		border-radius: 10px;
+		background: $gray-light;
+		z-index: 1;
+		border-bottom: 5px solid darken($gray-light, 20%);
+		box-shadow: 0 0 15px #4c4c4c;
+
+		&:nth-child(odd)::after {
+			content: "";
+			position: absolute;
+			top: 50%;
+			width: 100%;
+			height: 3px;
+			background: darkorange;
+		}
+
+		&:nth-child(4)::before,
+		&:nth-child(4)::after {
+			content: "";
+			position: absolute;
+			width: 100%;
+		}
+		&:nth-child(4)::before {
+			top: 30%;
+			height: 2px;
+			background: white;
+		}
+
+		&:nth-child(4)::after {
+			top: 60%;
+			height: 3px;
+			background: red;			
+		}
+  }
+
+  &__path {
+	  border: 1px solid gold;
+    position: absolute;
+
+  	&--chip {
+			width: 75px;
+	    height: 183px;
+    	right: 45%;
+    	top: 20px;
+    	outline: 1px solid gold;
+    	outline-offset: 4px;
+    }
+
+    &--trans {
+			width: 115px;
+	    height: 75px;
+	    right: 60px;
+	    bottom: 25px;
+	    border-left: none;
+	    border-top: none;
+    }
+
+    &--sensor {
+			width: 50px;
+	    height: 140px;
+	    right: 37px;
+	    bottom: 100px;
+	    border-left: none;
+	    border-top: none;
+    }
+  }
+
+  &__sensors {
+  	position: absolute;
+  	right: 30px;
+  	top: 40px;
+  	z-index: 1;
+  }
+
+	&__sensor {
+		width: 10px;
+		height: 10px;
+		border: 3px solid $gray-dark;
+		background: darkorange;
+		border-radius: 50%;
+		box-shadow: 0 0 5px #4c4c4c;
+	}
+}
+
 
 @keyframes blink {
 	0% {opacity: 0;}
@@ -229,6 +374,10 @@ body {
 
 @keyframes powerUp {
 	100% {opacity: 1;}
+}
+
+@keyframes scaleUp {
+	100% {transform: scale(1);}
 }
 
 @keyframes flyIn {

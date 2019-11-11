@@ -9,7 +9,26 @@
 		<!-- The core Firestore JS SDK -->
 		<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
 	</head>
-	<body class="body">
+	<body>
+		<div class="circuit">
+			<div class="circuit__chip circuit__chip--small"></div>
+			<div class="circuit__chip circuit__chip--large"></div>
+			<ul class="circuit__sensors">
+				<li class="circuit__sensor"></li>
+				<li class="circuit__sensor"></li>
+				<li class="circuit__sensor"></li>
+			</ul>
+			<ul class="circuit__transistors">
+				<li class="circuit__transistor"></li>
+				<li class="circuit__transistor"></li>
+				<li class="circuit__transistor"></li>
+				<li class="circuit__transistor"></li>
+				<li class="circuit__transistor"></li>
+			</ul>
+			<div class="circuit__path circuit__path--chip"></div>
+			<div class="circuit__path circuit__path--trans"></div>
+			<div class="circuit__path circuit__path--sensor"></div>
+		</div>
 		<div class="pebble">
 			<div class="pebble__strap pebble__strap--top"></div>
 			<button class="pebble__button pebble__button--left js-left-button"></button>
