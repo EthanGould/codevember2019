@@ -34,6 +34,7 @@ pebble.init = function() {
 	pebble.displayCount();
 	pebble.eventHandlers();
 	pebble.setTime();
+	animations.init();
 }
 
 pebble.eventHandlers = function() {
@@ -43,7 +44,6 @@ pebble.eventHandlers = function() {
 
 pebble.displayCount = function() {
 	db.collection('biometrics').get().then((snapshot) => {
-		// console.log(snapshot.docs[0].data());
 		var steps = snapshot.docs[0].data();
 		var stepCount = pebble.steps
 		stepCount.innerHTML = steps.stepCount;
@@ -84,5 +84,48 @@ pebble.setTime = function() {
 	setInterval(pebble.setTime, 60000);
 }
 
+/*
+========= Loading Animations =========
+*/
+
+
+// chain reaction of timed animations via adding and removing classes
+// each class addition represents an "action"
+
+animations = {};
+
+animations.init = function() {
+	setTimeout(this.circuitBoard, 1000);
+	setTimeout(this.display, 3000);
+}
+
+animations.circuitBoard = function() {
+	let body = document.querySelector('body');
+	body.classList.add('circuit-animation');
+	setTimeout(function() {body.classList.remove('circuit-animation')}, 2000)
+}
+
+animations.display = function() {
+	let body = document.querySelector('body');
+	body.classList.add('display-animation');
+	setTimeout(function() {body.classList.remove('display-animation')}, 2000)
+}
+
 pebble.init();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

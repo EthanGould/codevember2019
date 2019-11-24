@@ -7,6 +7,22 @@ $whiteish: #f9f9f9;
 
 body {
 	margin: 0;
+	transition: transform 1s;
+	z-index: 1;
+	transform-origin: center;
+  transform-style: preserve-3d;
+
+  &.circuit-animation {
+	  transform: rotateY(-25deg) rotateX(25deg);
+  }
+
+  &.display-animation {
+	  transform: rotateY(385deg) rotateX(45deg);
+  }
+
+  &.strap-animation {
+	  transform: rotateY(0deg);
+  }
 }
 
 ul {
@@ -26,10 +42,55 @@ ul {
 	border-radius: 5px;
 	animation-name: fadeLock;
 	animation-duration: 2.5s;
-	animation-delay: 1s;
-	animation-fill-mode: forwards;
-	opacity: 0;
+	animation-delay: 4.5s;
+	// opacity: 0; // We need to be able to start wirth opacity: 0 and end with opacity: 1 without the use of  "animation-fill-mode-forwards"
 	z-index: 1;
+  transform-style: preserve-3d;
+
+  &__branding {
+    position: absolute;
+    width: 70%;
+		left: 15%;
+    top: calc(50% - 24px);
+		font-size: 24px;
+		color: $gray-light;
+		font-family: sans-serif;
+		text-align: center;
+	}
+
+	&__face {
+		background: linear-gradient(180deg, $black, #484848 15%, #484848 85%, $black 100%);
+		position: absolute;
+    border-radius: 10px;
+
+		&--right {
+			height: 375px;
+			width: 60px;
+			right: 0;
+			top: 0;
+			transform: rotateY(-90deg);
+    	transform-origin: right;
+    	border: 1px solid $black;
+		}
+
+		&--left {
+			height: 375px;
+			width: 60px;
+			left: 0;
+			top: 0;
+			transform: rotateY(90deg);
+    	transform-origin: left;
+    	border: 1px solid $black;
+		}
+
+		&--back {
+			top: 0;
+			height: 375px;
+			width: 275px;
+			background-color: rgba(100,20,180, 0.5);
+			transform: translateX(-15px) translateZ(-60px);
+		}
+	}
 
 	&__glass {
 		box-sizing: border-box;
@@ -43,7 +104,7 @@ ul {
 
 		animation-name: slideIn;
 		animation-duration: 1s;
-		animation-delay: 1.5s;
+		animation-delay: 4s;
 		animation-fill-mode: forwards;
 	}
 
@@ -61,7 +122,7 @@ ul {
 		opacity: 0;
 		animation-name: powerUp;
 		animation-duration: .5s;
-		animation-delay: 3.5s;
+		animation-delay: 7s;
 		animation-fill-mode: forwards;
 
 		&--backlight {
@@ -109,7 +170,7 @@ ul {
 			height: 75px;
 			animation-name: slideLeft;
 			animation-duration: .5s;
-			animation-delay: 2.5s;
+			animation-delay: 7s;
 			animation-fill-mode: forwards;
 		}
 
@@ -118,7 +179,7 @@ ul {
 			height: 220px;
 			animation-name: slideRight;
 			animation-duration: .5s;
-			animation-delay: 2.5s;
+			animation-delay: 7s;
 			animation-fill-mode: forwards;
 
 			&::before,			
@@ -153,7 +214,7 @@ ul {
 
 		animation-name: flyIn;
 		animation-duration: 1.5s;
-		animation-delay: 1s;
+		animation-delay: 5.5s;
 		animation-fill-mode: forwards;
 
 		&--top {
@@ -208,11 +269,10 @@ ul {
   height: 325px;
   width: 200px;
  	margin: 25px calc(50% - 100px);
- 	transform: scale(.5);
-
 	animation-name: scaleUp;
-	animation-duration: 1s;
+	animation-duration: 3s;
 	animation-fill-mode: forwards;
+	opacity: 0;
 
   &__chip {
   	height: 30px;
@@ -359,17 +419,17 @@ ul {
 }
 
 @keyframes slideIn {
-	80% { opacity: 1;}
-	100% {opacity: 1; transform: translateY(0);}
+	60% {opacity: 1;}
+	70% {transform: translateZ(300px);}
+	100% {opacity: 1; transform: translateY(0) translateZ(0);}
 }
 
 @keyframes fadeLock {
-	50% {opacity: 1;}
 	89% {transform: rotateZ(0)}
 	90% {transform: rotateZ(-3deg);}
 	94% {transform: rotateZ(3deg) scale(1.03);}
 	98% {transform: rotateZ(-3deg);}
-	100% {transform: translateZ(0); opacity: 1;}
+	100% {transform: translateZ(0);}
 }
 
 @keyframes powerUp {
@@ -377,7 +437,23 @@ ul {
 }
 
 @keyframes scaleUp {
-	100% {transform: scale(1);}
+	0%{
+		opacity: 0;
+		transform: translateZ(-10000px);
+	}
+	60% {
+		opacity: 0;
+	}
+	61% {
+		opacity: 1;
+	}
+	90% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+		transform: translateZ(-20px);
+	}
 }
 
 @keyframes flyIn {
