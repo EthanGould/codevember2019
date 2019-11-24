@@ -28,19 +28,23 @@ ul {
   animation-name: fadeLock;
   animation-duration: 2.5s;
   animation-delay: 4.5s;
+  transition: all 1s;
   z-index: 1;
   transform-style: preserve-3d; }
   .pebble__branding {
     position: absolute;
-    width: 70%;
-    left: 15%;
-    top: calc(50% - 24px);
-    font-size: 24px;
+    width: 150px;
+    left: calc(50% - 75px);
+    top: calc(50% - 75px);
+    padding: 58px 0;
+    font-size: 30px;
     color: #9d9d9d;
     font-family: sans-serif;
-    text-align: center; }
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid #9d9d9d; }
   .pebble__face {
-    background: linear-gradient(180deg, #242424, #484848 15%, #484848 85%, #242424 100%);
+    background: linear-gradient(#242424, #242424);
     position: absolute;
     border-radius: 10px; }
     .pebble__face--right {
@@ -48,7 +52,7 @@ ul {
       width: 60px;
       right: 0;
       top: 0;
-      transform: rotateY(-90deg);
+      transform: rotateY(-90deg) translateZ(1px);
       transform-origin: right;
       border: 1px solid #242424; }
     .pebble__face--left {
@@ -56,7 +60,7 @@ ul {
       width: 60px;
       left: 0;
       top: 0;
-      transform: rotateY(90deg);
+      transform: rotateY(90deg) translateZ(1px);
       transform-origin: left;
       border: 1px solid #242424; }
     .pebble__face--back {
@@ -346,7 +350,7 @@ ul {
     opacity: 0; }
   61% {
     opacity: 1; }
-  90% {
+  85% {
     opacity: 1; }
   100% {
     opacity: 0;

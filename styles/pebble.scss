@@ -43,23 +43,27 @@ ul {
 	animation-name: fadeLock;
 	animation-duration: 2.5s;
 	animation-delay: 4.5s;
+	transition: all 1s;
 	// opacity: 0; // We need to be able to start wirth opacity: 0 and end with opacity: 1 without the use of  "animation-fill-mode-forwards"
 	z-index: 1;
   transform-style: preserve-3d;
 
   &__branding {
     position: absolute;
-    width: 70%;
-		left: 15%;
-    top: calc(50% - 24px);
-		font-size: 24px;
+    width: 150px;
+    left: calc(50% - 75px);
+    top: calc(50% - 75px);
+		padding: 58px 0;
+		font-size: 30px;
 		color: $gray-light;
 		font-family: sans-serif;
 		text-align: center;
+		border-radius: 50%;
+		border: 1px solid $gray-light;
 	}
 
 	&__face {
-		background: linear-gradient(180deg, $black, #484848 15%, #484848 85%, $black 100%);
+		background: linear-gradient($black, $black);
 		position: absolute;
     border-radius: 10px;
 
@@ -68,7 +72,7 @@ ul {
 			width: 60px;
 			right: 0;
 			top: 0;
-			transform: rotateY(-90deg);
+			transform: rotateY(-90deg) translateZ(1px);
     	transform-origin: right;
     	border: 1px solid $black;
 		}
@@ -78,7 +82,7 @@ ul {
 			width: 60px;
 			left: 0;
 			top: 0;
-			transform: rotateY(90deg);
+			transform: rotateY(90deg) translateZ(1px);
     	transform-origin: left;
     	border: 1px solid $black;
 		}
@@ -447,7 +451,7 @@ ul {
 	61% {
 		opacity: 1;
 	}
-	90% {
+	85% {
 		opacity: 1;
 	}
 	100% {
